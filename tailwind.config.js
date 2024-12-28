@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        primaryBold: ["primary Bold"],
+        primaryRegular: ["primary Regular"],
+      },
       colors: {
         primary: "#9D9FE6",
         secondary: "#E9AAAC",
