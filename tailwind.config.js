@@ -19,6 +19,7 @@ export default {
       },
       colors: {
         primary: "#9D9FE6",
+        primaryGelap: "#7C7DB9",
         secondary: "#E9AAAC",
         tertiary: "#ff844B",
       },
