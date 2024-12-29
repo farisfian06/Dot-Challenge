@@ -7,27 +7,51 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Dashboard from "../pages/Dashboard";
 import Quiz from "../pages/Quiz";
+import PageLayout from "../components/layout/PageLayout";
+import ProtectedRoute from "./ProtectedRoute";
 
 const createRouter = createBrowserRouter([
   {
     path: "/",
-    element: <LandingPage />,
+    element: (
+      <PageLayout>
+        <LandingPage />
+      </PageLayout>
+    ),
   },
   {
     path: "/login",
-    element: <Login />,
+    element: (
+      <PageLayout>
+        <Login />
+      </PageLayout>
+    ),
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <ProtectedRoute>
+        <PageLayout>
+          <Dashboard />
+        </PageLayout>
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/signup",
-    element: <Signup />,
+    element: (
+      <PageLayout>
+        <Signup />
+      </PageLayout>
+    ),
   },
   {
-    path: "/quiz",
-    element: <Quiz />,
+    path: "/quiz/:category/:amount",
+    element: (
+      <ProtectedRoute>
+        <Quiz />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "*",
