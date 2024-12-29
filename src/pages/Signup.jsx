@@ -8,7 +8,7 @@ const Signup = () => {
     <main>
       <section>
         <div className="container">
-          <form className="flex mx-auto shadow-2xl max-w-screen-lg rounded-2xl overflow-hidden *:py-14">
+          <form className="flex mx-auto shadow-2xl max-w-screen-lg rounded-2xl overflow-hidden *:py-14 mt-12">
             <div className="bg-slate-100 w-3/5 px-8 flex flex-col gap-8 justify-center items-center">
               <h1 className="font-primaryBold text-center text-primary text-2xl leading-none">
                 Welcome! <br />
