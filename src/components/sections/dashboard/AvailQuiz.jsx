@@ -9,6 +9,7 @@ const availableQuizzes = [
     id: 1,
     judul: "Sejarah Dunia",
     kategori: "Sejarah",
+    idCategory: 23,
     difficulty: "Medium",
     jmlhSoal: 10,
     img: history,
@@ -17,6 +18,7 @@ const availableQuizzes = [
     id: 2,
     judul: "Pengetahuan Umum",
     kategori: "Pengetahuan",
+    idCategory: 9,
     difficulty: "Easy",
     jmlhSoal: 10,
     img: general,
@@ -25,6 +27,7 @@ const availableQuizzes = [
     id: 3,
     judul: "Teknologi Modern",
     kategori: "Teknologi",
+    idCategory: 30,
     difficulty: "Hard",
     jmlhSoal: 10,
     img: technology,
@@ -46,6 +49,7 @@ const AvailQuiz = () => {
               kategori={item.kategori}
               gambar={item.img}
               jmlhSoal={item.jmlhSoal}
+              idCategory={item.idCategory}
             />
           ))}
         </div>

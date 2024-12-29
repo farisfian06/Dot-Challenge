@@ -2,6 +2,11 @@ import React from "react";
 import AvailQuiz from "../components/sections/dashboard/AvailQuiz";
 import CompleteQuiz from "../components/sections/dashboard/CompleteQuiz";
 
+const savedData = JSON.parse(localStorage.getItem("quizData"));
+console.log(savedData);
+console.log(localStorage.getItem("remainingTIme"));
+// localStorage.removeItem("quizData");
+
 const Dashboard = () => {
   return (
     <div className="bg-gray-100 min-h-screen">
