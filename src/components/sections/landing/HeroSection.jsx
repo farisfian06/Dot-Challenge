@@ -1,5 +1,6 @@
 import React from "react";
 import lepi from "../../../assets/Landing/lepi.png";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -16,8 +17,13 @@ const HeroSection = () => {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Laboriosam, dignissimos?
               </p>
-              <button className="px-6 py-3 font-primaryBold text-lg bg-primary text-white rounded-lg hover:bg-secondary transition-all duration-300 ease-in-out">
-                Mulai Sekarang
+              <button>
+                <Link
+                  to={"/login"}
+                  className="px-6 py-3 font-primaryBold text-lg bg-primary text-white rounded-lg hover:bg-secondary transition-all duration-300 ease-in-out"
+                >
+                  Mulai Sekarang
+                </Link>
               </button>
             </div>
             <div className="w-3/5 relative flex justify-center items-center">
