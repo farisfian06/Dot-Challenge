@@ -32,7 +32,7 @@ const howItWorkData = [
 
 const HowItWork = () => {
   return (
-    <section className="bg-gray-50 py-16" id="how-it-work">
+    <section className="bg-gray-50 py-20" id="how-it-work">
       <div className="container mx-auto text-center">
         <h2 className="text-4xl font-primaryBold text-gray-800 mb-10">
           How It Works
