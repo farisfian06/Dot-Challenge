@@ -18,7 +18,7 @@ const categoriesData = [
 
 const Categories = () => {
   return (
-    <section className="py-16" id="categories">
+    <section className="py-20" id="categories">
       <div className="container mx-auto text-center">
         <h2 className="text-4xl font-primaryBold text-gray-800 mb-10">
           Quiz Categories
