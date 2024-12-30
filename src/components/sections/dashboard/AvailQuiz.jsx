@@ -7,8 +7,8 @@ import technology from "../../../assets/categories/tech.png";
 const availableQuizzes = [
   {
     id: 1,
-    judul: "Sejarah Dunia",
-    kategori: "Sejarah",
+    judul: "World History",
+    kategori: "History",
     idCategory: 23,
     difficulty: "Medium",
     jmlhSoal: 10,
@@ -16,8 +16,8 @@ const availableQuizzes = [
   },
   {
     id: 2,
-    judul: "Pengetahuan Umum",
-    kategori: "Pengetahuan",
+    judul: "General Knowledge",
+    kategori: "General Knowledge",
     idCategory: 9,
     difficulty: "Easy",
     jmlhSoal: 10,
@@ -25,8 +25,8 @@ const availableQuizzes = [
   },
   {
     id: 3,
-    judul: "Teknologi Modern",
-    kategori: "Teknologi",
+    judul: "Gadgets",
+    kategori: "Technology",
     idCategory: 30,
     difficulty: "Hard",
     jmlhSoal: 10,
@@ -39,9 +39,9 @@ const AvailQuiz = () => {
     <section className="mb-12">
       <div className="container">
         <h2 className="text-2xl font-primaryBold text-gray-700 mb-6">
-          Pilihan Kuis
+          Quiz Options
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {availableQuizzes.map((item, index) => (
             <QuizCard
               key={index}

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { IoMdMailOpen, IoIosLock } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { z } from "zod";
 
 const loginSchema = z.object({
@@ -16,7 +18,6 @@ const loginSchema = z.object({
 const Login = () => {
   const [gmail, setGmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const [formError, setFormError] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
@@ -39,13 +40,21 @@ const Login = () => {
       );
       setFormError(errors);
     } else {
-      // Jika validasi berhasil, lakukan pengecekan user
       if (gmail === "user@gmail.com" && password === "rahasia") {
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("user", JSON.stringify({ email: gmail }));
         navigate("/dashboard"); // Redirect to dashboard
       } else {
-        setError("Invalid username or password");
+        toast.error("Invalid username or password", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
         setFormError({ email: "", password: "" });
       }
     }
@@ -53,13 +62,14 @@ const Login = () => {
 
   return (
     <main>
+      <ToastContainer />
       <section>
-        <div className="container">
+        <div className="container flex justify-center py-32 lg:py-8">
           <form
             onSubmit={handleSubmit}
-            className="flex mx-auto shadow-2xl max-w-screen-lg rounded-2xl overflow-hidden *:py-14 mt-12"
+            className="flex shadow-2xl w-full max-w-md md:max-w-screen-lg rounded-2xl overflow-hidden *:py-14 mt-12 "
           >
-            <div className="bg-slate-100 w-3/5 px-8 flex flex-col gap-8 justify-center items-center">
+            <div className="bg-slate-100 w-full md:w-3/5 px-8 flex flex-col gap-8 justify-center items-center">
               <h1 className="font-primaryBold text-center text-primary text-2xl leading-none">
                 Hello! <br />
                 <span className="text-black font-primaryRegular text-base">
@@ -119,17 +129,15 @@ const Login = () => {
                 </Link>
               </h3>
             </div>
-            <div className="bg-gradient-to-br from-primary from-45% to-secondary w-2/5 px-4 *:text-center flex flex-col gap-2 justify-center items-center">
+            <div className="bg-gradient-to-br from-primary from-45% to-secondary w-2/5 px-4 *:text-center flex-col gap-2 justify-center items-center hidden md:flex">
               <h2 className="font-primaryBold text-2xl text-slate-50">
                 Welcome Back!!
               </h2>
               <p className="text-slate-50 font-primaryRegular">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Necessitatibus, inventore!
+                Log in to continue your journey and test your knowledge.
               </p>
             </div>
           </form>
-          {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
         </div>
       </section>
     </main>

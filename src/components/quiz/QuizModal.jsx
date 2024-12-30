@@ -30,9 +30,9 @@ const QuizModal = ({ correct, incorrect, totalAnswered, totalQuestions }) => {
           <button>
             <Link
               to={"/dashboard"}
-              className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primaryGelap transition duration-300"
+              className="px-6 py-2 font-primaryBold bg-primary text-white rounded-lg hover:bg-primaryGelap transition duration-300"
             >
-              Selesai
+              Finish
             </Link>
           </button>
         </div>

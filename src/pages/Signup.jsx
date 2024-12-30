@@ -65,8 +65,8 @@ const Signup = () => {
                 Glad to see you!!
               </h2>
               <p className="text-slate-50 font-primaryRegular">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Necessitatibus, inventore!
+                Join us and start exploring the exciting world of quizzes and
+                challenges.
               </p>
             </div>
           </form>

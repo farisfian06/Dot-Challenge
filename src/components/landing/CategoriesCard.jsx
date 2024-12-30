@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 const CategoriesCard = ({ img, nama }) => {
   return (
     <div
@@ -10,7 +12,7 @@ const CategoriesCard = ({ img, nama }) => {
         {nama}
       </h3>
       <button className="absolute inset-x-0 bottom-3 text-white text-sm opacity-0 group-hover:opacity-100 group-hover:translate-y-1 transition duration-300">
-        Lihat Quiz
+        <Link to={"/dashboard"}>See Quiz</Link>
       </button>
     </div>
   );

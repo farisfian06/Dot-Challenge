@@ -8,20 +8,20 @@ import entertainment from "../../../assets/categories/entertain.png";
 import sport from "../../../assets/categories/sport.png";
 
 const categoriesData = [
-  { name: "Pengetahuan Umum", img: general },
-  { name: "Sains", img: scince },
-  { name: "Sejarah", img: history },
-  { name: "Teknologi", img: tech },
-  { name: "Hiburan", img: entertainment },
-  { name: "Olahraga", img: sport },
+  { name: "General Knowledge", img: general },
+  { name: "Science", img: scince },
+  { name: "History", img: history },
+  { name: "Technology", img: tech },
+  { name: "Entertainment", img: entertainment },
+  { name: "Sport", img: sport },
 ];
 
 const Categories = () => {
   return (
-    <section className="py-16">
+    <section className="py-16" id="categories">
       <div className="container mx-auto text-center">
         <h2 className="text-4xl font-primaryBold text-gray-800 mb-10">
-          Kategori Quiz
+          Quiz Categories
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {categoriesData.map((item, index) => (

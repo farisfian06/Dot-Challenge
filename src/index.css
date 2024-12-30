@@ -13,3 +13,25 @@
   src: local("Poppins-Bold"),
     url("./assets/font/Poppins-Regular.ttf") format("truetype");
 }
+
+html {
+  font-size: 70%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 75%;
+  }
+}
+
+@media (min-width: 992px) {
+  html {
+    font-size: 85%;
+  }
+}
+
+@media (min-width: 1200px) {
+  html {
+    font-size: 100%;
+  }
+}
