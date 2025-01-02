@@ -1,6 +1,5 @@
 import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import App from "../App";
 import LandingPage from "../pages/LandingPage";
 import NotFound from "../pages/NotFound";
 import Login from "../pages/Login";
