@@ -7,8 +7,10 @@ const LandingPage = () => {
   return (
     <>
       <HeroSection />
-      <HowItWork />
-      <Categories />;
+      <main>
+        <HowItWork />
+        <Categories />;
+      </main>
     </>
   );
 };

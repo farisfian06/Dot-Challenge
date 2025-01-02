@@ -21,12 +21,7 @@ const Navbar = () => {
       <div className="container py-4">
         <div className="flex justify-between items-center font-primaryRegular text-xl">
           <Link to={"/"}>
-            <img
-              src={logo}
-              alt=""
-              className="w-14 object-contain
-            "
-            />
+            <img src={logo} alt="" className="w-14 object-contain" />
           </Link>
           <ul className="flex items-center justify-evenly gap-4 ">
             <Link

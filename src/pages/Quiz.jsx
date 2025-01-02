@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { getAllQuestion } from "../api/service/Question";
 import { decode } from "he";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useTimer } from "react-timer-hook";
 import QuizModal from "../components/quiz/QuizModal";
+import { motion } from "framer-motion";
 
 const Quiz = () => {
   const { category, amount } = useParams();
@@ -116,90 +117,95 @@ const Quiz = () => {
   const currentQuestion = soal[curIndex];
 
   return (
-    <section className="h-screen flex flex-col relative">
-      {isFinished && (
-        <QuizModal
-          correct={correctCount}
-          incorrect={incorrectCount}
-          totalAnswered={totalAnswered}
-          totalQuestions={totalQuestions}
-        />
-      )}
-      <div className="w-full py-4 bg-primary shadow-md">
-        <div className="container flex gap-8 items-center">
-          {isLoading ? (
-            <>
-              <div className="bg-primaryGelap text-white px-8 py-4 rounded-lg animate-pulse shadow"></div>
-              <div className="animate-pulse bg-primaryGelap rounded-full px-12 py-4"></div>
-            </>
-          ) : (
-            <>
-              <h3 className="bg-primaryGelap text-white px-4 py-2 rounded-lg font-primaryBold text-xl shadow">
-                {curIndex + 1} of {totalQuestions}
-              </h3>
-              <h3 className="font-primaryBold text-xl text-white">
-                {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-              </h3>
-            </>
-          )}
+    <main>
+      <section className="h-screen flex flex-col relative">
+        {isFinished && (
+          <QuizModal
+            correct={correctCount}
+            incorrect={incorrectCount}
+            totalAnswered={totalAnswered}
+            totalQuestions={totalQuestions}
+          />
+        )}
+        <div className="w-full py-4 bg-primary shadow-md">
+          <div className="container flex gap-8 items-center">
+            {isLoading ? (
+              <>
+                <div className="bg-primaryGelap text-white px-8 py-4 rounded-lg animate-pulse shadow"></div>
+                <div className="animate-pulse bg-primaryGelap rounded-full px-12 py-4"></div>
+              </>
+            ) : (
+              <>
+                <h3 className="bg-primaryGelap text-white px-4 py-2 rounded-lg font-primaryBold text-xl shadow">
+                  {curIndex + 1} of {totalQuestions}
+                </h3>
+                <h3 className="font-primaryBold text-xl text-white">
+                  {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+                </h3>
+              </>
+            )}
+          </div>
         </div>
-      </div>
 
-      <div className="flex-1 container flex flex-col gap-6 px-4 py-6">
-        <div className="flex-1 bg-white rounded-lg shadow-lg p-6 flex justify-center items-center">
+        <div className="flex-1 container flex flex-col gap-6 px-4 py-6">
+          <div className="flex-1 bg-white rounded-lg shadow-lg p-6 flex justify-center items-center">
+            {isLoading ? (
+              <div className="flex gap-2 animate-pulse">
+                <div className="w-4 aspect-square bg-gray-600"></div>
+                <div className="w-4 aspect-square bg-gray-600"></div>
+                <div className="w-4 aspect-square bg-gray-600"></div>
+              </div>
+            ) : (
+              <h1 className="text-2xl text-center font-primaryBold text-primaryGelap">
+                {decode(currentQuestion.question)}
+              </h1>
+            )}
+          </div>
+
           {isLoading ? (
-            <div className="flex gap-2 animate-pulse">
-              <div className="w-4 aspect-square bg-gray-600"></div>
-              <div className="w-4 aspect-square bg-gray-600"></div>
-              <div className="w-4 aspect-square bg-gray-600"></div>
+            <div className="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="w-full bg-red-500 rounded-lg shadow-lg transition-all animate-pulse"></div>
+              <div className="w-full bg-yellow-500 rounded-lg shadow-lg transition-all animate-pulse"></div>
+              <div className="w-full bg-purple-500 rounded-lg shadow-lg transition-all animate-pulse"></div>
+              <div className="w-full bg-blue-500 rounded-lg shadow-lg transition-all animate-pulse"></div>
             </div>
           ) : (
-            <h1 className="text-2xl text-center font-primaryBold text-primaryGelap">
-              {decode(currentQuestion.question)}
-            </h1>
+            <div className="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {shuffledAnswers.map((answer, idx) => (
+                <motion.button
+                  key={idx}
+                  whileTap={{ scale: 0.9 }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                  onClick={() => {
+                    saveProgress();
+                    handleNextQuestion(answer);
+                  }}
+                  className={`w-full flex justify-center items-center ${
+                    idx === 0
+                      ? "bg-red-500 hover:bg-red-600"
+                      : idx === 1
+                      ? "bg-yellow-500 hover:bg-yellow-600"
+                      : idx === 2
+                      ? "bg-purple-500 hover:bg-purple-600"
+                      : "bg-blue-500 hover:bg-blue-600"
+                  } text-white text-lg font-primaryRegular text-center rounded-lg shadow-lg`}
+                >
+                  {decode(answer)}
+                </motion.button>
+              ))}
+            </div>
           )}
         </div>
-
-        {isLoading ? (
-          <div className="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="w-full bg-red-500 rounded-lg shadow-lg transition-all animate-pulse"></div>
-            <div className="w-full bg-yellow-500 rounded-lg shadow-lg transition-all animate-pulse"></div>
-            <div className="w-full bg-purple-500 rounded-lg shadow-lg transition-all animate-pulse"></div>
-            <div className="w-full bg-blue-500 rounded-lg shadow-lg transition-all animate-pulse"></div>
-          </div>
-        ) : (
-          <div className="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {shuffledAnswers.map((answer, idx) => (
-              <button
-                key={idx}
-                onClick={() => {
-                  saveProgress();
-                  handleNextQuestion(answer);
-                }}
-                className={`w-full flex justify-center items-center ${
-                  idx === 0
-                    ? "bg-red-500 hover:bg-red-600"
-                    : idx === 1
-                    ? "bg-yellow-500 hover:bg-yellow-600"
-                    : idx === 2
-                    ? "bg-purple-500 hover:bg-purple-600"
-                    : "bg-blue-500 hover:bg-blue-600"
-                } text-white text-lg font-primaryRegular text-center rounded-lg shadow-lg hover:scale-105 transition-all duration-300 ease-in-out`}
-              >
-                {decode(answer)}
-              </button>
-            ))}
+        {error && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 z-30 flex justify-center items-center">
+            <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm sm:max-w-md">
+              <h1 className="text-lg text-center text-red-500">{error}</h1>
+            </div>
           </div>
         )}
-      </div>
-      {error && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-30 flex justify-center items-center">
-          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm sm:max-w-md">
-            <h1 className="text-lg text-center text-red-500">{error}</h1>
-          </div>
-        </div>
-      )}
-    </section>
+      </section>
+    </main>
   );
 };
 

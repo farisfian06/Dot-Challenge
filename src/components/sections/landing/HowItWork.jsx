@@ -6,6 +6,7 @@ import {
   FaTrophy,
 } from "react-icons/fa";
 import HowItWorkCard from "../../landing/HowItWorkCard";
+import { motion } from "framer-motion";
 
 const howItWorkData = [
   {
@@ -34,18 +35,32 @@ const HowItWork = () => {
   return (
     <section className="bg-gray-50 py-20" id="how-it-work">
       <div className="container mx-auto text-center">
-        <h2 className="text-4xl font-primaryBold text-gray-800 mb-10">
+        <motion.h2
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ margin: "-100px", once: true }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="text-4xl font-primaryBold text-gray-800 mb-10"
+        >
           How It Works
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-center gap-8">
+        </motion.h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-center  gap-8">
           {howItWorkData.map((item, index) => (
-            <HowItWorkCard
+            <motion.div
               key={index}
-              judul={item.judul}
-              deskripsi={item.deskripsi}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ margin: "-100px", once: true }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.2,
+                ease: "easeOut",
+              }}
             >
-              {item.icon}
-            </HowItWorkCard>
+              <HowItWorkCard judul={item.judul} deskripsi={item.deskripsi}>
+                {item.icon}
+              </HowItWorkCard>
+            </motion.div>
           ))}
         </div>
       </div>
